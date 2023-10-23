@@ -273,3 +273,31 @@ def finn_standaravik(data):
         sum1 = (value - tap_mekanisk_energi())**2
     delta_X = np.sqrt(1/(len(data)-1) * sum1)
     return delta_X
+
+def standarfeil(data):
+    standarfeil = finn_standaravik(data)/np.sqrt(len(data))
+    return standarfeil
+
+standarfeil(rulletid)
+standarfeil(total_kinetisk())
+standarfeil(V_slutt)
+
+def view_diff():
+    diff_list = []
+    simulert_hatighet = yfast[-1]
+    eksprementiell_hatighet = V_slutt
+    for i in eksprementiell_hatighet:
+        sum += simulert_hatighet - i
+    diff_hastighet = sum / len(eksprementiell_hatighet)
+    
+    diff_list.append(diff_hastighet)
+    
+    simulert_rulletid = finn_tid()
+    eksprementiell_rulletid = gjennomsnitt_rulletid(rulletid)
+    
+    diff_list.append(simulert_rulletid-eksprementiell_rulletid)
+    
+    
+    return diff_list
+
+print(f"Forskjell i hastighet: {view_diff()[0]} \nForskjell i rulletid {view_diff()[1]}")
