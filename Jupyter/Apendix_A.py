@@ -128,6 +128,7 @@ def krumning_kappa():
     plt.ylabel('$K$(1/mm)',fontsize=20)
     plt.grid()
     plt.show()
+    return kappa
     
 krumning_kappa()
 
@@ -160,7 +161,7 @@ def finn_tid():
 finn_tid()
     
 def sentripetalakselerasjon():
-    a_ = (finn_farten(y)**2)*kappa
+    a_ = (finn_farten(y)**2)*krumning_kappa()
     return a_
 
 
@@ -225,6 +226,10 @@ m_kule = 0.037 #[kg]
 V_slutt = [1.391,1.377,1.35828 ,1.36367, 1.407, 1.361, 1.343, 1.345, 1.3435, 1.343, 1.339] #[m/s]
 
 rulletid = [1.55, 1.54, 1.500, 1.5333, 1.500, 1.533, 1.500, 1.567, 1.533, 1.433] #[s]
+
+def gjennomsnitt_rulletid():
+    rulletid_sum = sum(rulletid)        
+    return rulletid_sum
 
 
 g = 9.81 #[m/s**2]
