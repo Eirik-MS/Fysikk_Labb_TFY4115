@@ -146,7 +146,7 @@ def plot_helningsvinkel():
 
 plot_helningsvinkel()
 
-import numpy as np
+
 def finn_tid():
     delta_v_x = np.zeros(len(y))
     delta_t = np.zeros(len(y))
@@ -223,16 +223,22 @@ h_slutt = 0.155 #[m]
 
 m_kule = 0.037 #[kg]
 
+g = 9.81 #[m/s**2]
+
 V_slutt = [1.391,1.377,1.35828 ,1.36367, 1.407, 1.361, 1.343, 1.345, 1.3435, 1.343, 1.339] #[m/s]
 
 rulletid = [1.55, 1.54, 1.500, 1.5333, 1.500, 1.533, 1.500, 1.567, 1.533, 1.433] #[s]
 
 def gjennomsnitt_rulletid():
-    rulletid_sum = sum(rulletid)        
+    rulletid_sum = sum(rulletid)/len(rulletid)        
     return rulletid_sum
 
 
-g = 9.81 #[m/s**2]
+def gjennomsnitt_sluttfart():
+    V_slutt_sum = sum(V_slutt)/len(V_slutt)        
+    return V_slutt_sum
+
+
 def tap_mekanisk_energi(): 
     Energi_sum = 0
     #finner gjennomsnittstap på de ti forsøkene
