@@ -1,5 +1,9 @@
 #compare two polinolam like paths and plot them in the same plot
 import csv
+import matplotlib.pyplot as plt
+import numpy as np
+from scipy.interpolate import CubicSpline
+
 #open a text file an get colums 2 and 3
 with open('Data/Vid3.txt', 'r') as f:
     reader = csv.reader(f, delimiter=',')
@@ -13,12 +17,9 @@ with open('Data/Vid3.txt', 'r') as f:
         x_csv.append(float(row[1]))
         y_csv.append(float(row[2]))
         
+x_csv = np.asarray(x_csv)*1000
+y_csv = np.asarray(y_csv)*1000        
 #plot the data
-
-import matplotlib.pyplot as plt
-import numpy as np
-from scipy.interpolate import CubicSpline
-
 xmin = 0
 xmax = 1401
 dx = 1
@@ -46,11 +47,8 @@ d2y = cs(x,2)
 
 yfast = Data.copy()
 baneform = plt.figure('y(x)',figsize=(12,6))
-#make two subplots
-
-
-plt.plot(x,y,xfast,yfast,'*')
-plt.plot(x_csv,y_csv,'r')
+plt.plot(x,y,xfast,yfast,'*', label='Ideelle baneform')
+plt.plot(x_csv,y_csv,'y', label='Målt baneform')
 plt.title('Banens form', fontsize=20)
 plt.xlabel('$x$ (mm)',fontsize=20)
 plt.ylabel('$y(x)$ (mm)',fontsize=20)
@@ -65,5 +63,7 @@ plt.text(1160, 50, int(yfast[6]), fontsize=16)
 plt.text(1360, 50, int(yfast[7]), fontsize=16)
 plt.ylim(0,300)
 plt.xlim(-50,1450)
+plt.legend(fontsize=16)
 plt.grid()
-plt.show()
+#plt.show()
+plt.savefig('BaneformRe.png', bbox_inches='tight', dpi=600)
