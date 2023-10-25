@@ -12,3 +12,14 @@ with open('Data/Vid3.txt', 'r') as f:
         print(row)
         x.append(float(row[1]))
         y.append(float(row[2]))
+        
+#plot the data
+
+import matplotlib.pyplot as plt
+
+plt.plot(x,y)
+plt.title('y(x)', fontsize=20)
+plt.xlabel('$x$ (mm)',fontsize=20)
+plt.ylabel('$y$(mm)',fontsize=20)
+plt.grid()
+plt.show()
